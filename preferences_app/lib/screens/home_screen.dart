@@ -14,9 +14,17 @@ class HomeScreen extends StatelessWidget {
         title: Text('Home'),
       ),
       drawer: SideMenu(),
-      body: Center(
-        child: Text('Hola Mundo'),
-      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Modo Oscuro: '),
+          Divider(),
+          Text('Genero: '),
+          Divider(),
+          Text('Username: '),
+          Divider(),
+        ],
+      )
     );
   }
 }
