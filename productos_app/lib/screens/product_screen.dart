@@ -35,6 +35,7 @@ class _ProductScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFormProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -68,8 +69,12 @@ class _ProductScreenBody extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () async{
           //TODO: Save
+          if(!productForm.isValidForm()){
+            return;
+          }
+          await productoService.saveOrCreateProduct(productForm.product);
         },
         child: Icon(Icons.save_alt_outlined),),
     );
@@ -91,6 +96,8 @@ class _ProductForm extends StatelessWidget {
         width: double.infinity,
         decoration: _buildBoxDecoration(),
         child: Form(
+          key: productForm.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               SizedBox(height: 10),
@@ -117,7 +124,8 @@ class _ProductForm extends StatelessWidget {
                     product.price = double.parse(value);
                   }
                 }, 
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: TextInputType.number,
+                // keyboardType: TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecorations.authInputDecoration(hintText: '\$150', labelText: 'Precio:'),
               ),
               SizedBox(height: 30),
