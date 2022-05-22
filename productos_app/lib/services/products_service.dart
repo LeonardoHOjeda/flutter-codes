@@ -9,6 +9,7 @@ class ProductsService extends ChangeNotifier {
 
   final List<Product> products = [];
   bool isLoading = true;
+  late Product selectedProduct;
 
   ProductsService() {
     this.loadProducts();
@@ -16,7 +17,6 @@ class ProductsService extends ChangeNotifier {
 
   //TODO: <List<Product>>
   Future<List<Product>> loadProducts() async {
-
     this.isLoading = true;
     notifyListeners();
     final url = Uri.https(_baseUrl, 'products.json');
