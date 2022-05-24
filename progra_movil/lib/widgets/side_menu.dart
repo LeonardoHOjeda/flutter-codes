@@ -24,7 +24,7 @@ class SideMenu extends StatelessWidget {
             title: Text('Practice 1'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, PracticeOneScreen.routerName);
+              Navigator.pushNamed(context, CarouselWithIndicatorDemo.routerName);
             },
           ),
           ListTile(
