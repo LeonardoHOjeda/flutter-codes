@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: HomeScreen.routerName,
       routes: {
-        HomeScreen.routerName       : (_) =>  HomeScreen(),
-        CarouselWithIndicatorDemo.routerName: (_) =>  CarouselWithIndicatorDemo(),
+        HomeScreen.routerName         : (_) =>  HomeScreen(),
+        PracticeThreeScreen.routerName: (_) =>  PracticeThreeScreen()
       },
     );
   }

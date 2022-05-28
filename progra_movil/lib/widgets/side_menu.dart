@@ -23,8 +23,8 @@ class SideMenu extends StatelessWidget {
             leading: Icon(Icons.looks_one_rounded),
             title: Text('Practice 1'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, CarouselWithIndicatorDemo.routerName);
+              // Navigator.pop(context);
+              // Navigator.pushNamed(context, PracticeThreeScreen.routerName);
             },
           ),
           ListTile(
@@ -35,7 +35,10 @@ class SideMenu extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.looks_3_rounded),
             title: Text('Practice 3'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, PracticeThreeScreen.routerName);
+            },
           ),
         ],
       ),
