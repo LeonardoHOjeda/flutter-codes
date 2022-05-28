@@ -20,58 +20,148 @@ class _PracticeThreeScreenState extends State<PracticeThreeScreen> {
           backgroundColor: Colors.green[800],
         ),
         drawer: SideMenu(),
-        body: Stack(
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: [
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.green.shade600,
+                        Colors.green.shade400,
+                        Colors.green.shade200,
+                        Colors.green.shade50,
+                      ],
+                      stops: [
+                        0.1,
+                        0.4,
+                        0.7,
+                        0.9
+                      ]),
+                ),
+              ),
+              Container(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 40.0, vertical: 120.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Iniciar Sesion',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'OpenSans',
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 30.0),
+                        _buildEmailTF(),
+                        SizedBox(height: 30.0),
+                        _buildPasswordTF(),
+                        _buildForgotPasswordBtn(),
+                        _buildRememberMeCheckbox(),
+                        _buildLoginBtn(),
+                        _buildSignInWithText(),
+                        _buildSocialBtnRow(),
+                        _buildSignUpBtn()
+                      ]),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+
+  GestureDetector _buildSignUpBtn() {
+    return GestureDetector(
+      onTap: ()=> print('Crear Cuenta Button'),
+      child: RichText(
+        text: TextSpan(
           children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.green.shade600,
-                      Colors.green.shade400,
-                      Colors.green.shade200,
-                      Colors.green.shade50,
-                    ],
-                    stops: [
-                      0.1,
-                      0.4,
-                      0.7,
-                      0.9
-                    ]),
+            TextSpan(
+              text: 'No tienes una cuenta?',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.w400
               ),
             ),
-            Container(
-              height: double.infinity,
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                padding:
-                    EdgeInsets.symmetric(horizontal: 40.0, vertical: 120.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Iniciar Sesion',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 30.0),
-                      _buildEmailTF(),
-                      SizedBox(height: 30.0),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
-                      _buildLoginBtn()
-                    ]),
-              ),
+            TextSpan(
+              text: 'Crear Cuenta',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold
+              )
+            )
+          ]
+        ),
+      ),
+    );
+  }
+
+  Padding _buildSocialBtnRow() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildSocialBtn(() => print('Login with Facebook') ,AssetImage('assets/facebook.png')),
+          _buildSocialBtn(() => print('Login with Google') ,AssetImage('assets/google.png')),
+        ]
+      ),
+    );
+  }
+
+  GestureDetector _buildSocialBtn(VoidCallback onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black87,
+              offset: Offset(0,2),
+              blurRadius: 6.0
             )
           ],
-        ));
+          image: DecorationImage(
+            image: logo
+          )
+        ),
+      ),
+    );
+  }
+
+  Column _buildSignInWithText() {
+    return Column(
+      children: [
+        Text(
+          '- OR -',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        SizedBox(height: 20.0),
+        Text(
+          'Iniciar Sesion con',
+          style: kLabelStyle,
+        )
+      ],
+    );
   }
 
   Container _buildLoginBtn() {
