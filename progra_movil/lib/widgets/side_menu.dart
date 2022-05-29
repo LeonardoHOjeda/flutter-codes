@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progra_movil/screens/practice_four.dart';
 import 'package:progra_movil/screens/practice_two.dart';
 import 'package:progra_movil/screens/screens.dart';
 
@@ -21,16 +22,8 @@ class SideMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.looks_one_rounded),
-            title: Text('Practice 1'),
-            onTap: () {
-              // Navigator.pop(context);
-              // Navigator.pushNamed(context, PracticeThreeScreen.routerName);
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.looks_two_rounded),
-            title: Text('Practice 2'),
+            title: Text('Practice 2 - CºFº to FºCº '),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, PracticeTwoScreen.routerName);
@@ -38,10 +31,18 @@ class SideMenu extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.looks_3_rounded),
-            title: Text('Practice 3'),
+            title: Text('Practice 3 - UI Login'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, PracticeThreeScreen.routerName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.looks_4_rounded),
+            title: Text('Practice 4 - Movies'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, PracticeFourScreen.routerName);
             },
           ),
         ],

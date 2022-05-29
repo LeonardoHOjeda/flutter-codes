@@ -43,6 +43,6 @@ class DBProvider {
   }
 
   nuevoScanRaw(ScanModel) async{
-
+    
   }
 }
