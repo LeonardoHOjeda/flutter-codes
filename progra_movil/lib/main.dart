@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progra_movil/screens/practice_two.dart';
 import 'package:progra_movil/screens/screens.dart';
 
 void main() => runApp(const MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routerName,
       routes: {
         HomeScreen.routerName         : (_) =>  HomeScreen(),
-        PracticeThreeScreen.routerName: (_) =>  PracticeThreeScreen()
+        PracticeThreeScreen.routerName: (_) =>  PracticeThreeScreen(),
+        PracticeTwoScreen.routerName: (_) =>  PracticeTwoScreen()
       },
     );
   }

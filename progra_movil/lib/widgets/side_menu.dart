@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progra_movil/screens/practice_two.dart';
 import 'package:progra_movil/screens/screens.dart';
 
 class SideMenu extends StatelessWidget {
@@ -30,7 +31,10 @@ class SideMenu extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.looks_two_rounded),
             title: Text('Practice 2'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, PracticeTwoScreen.routerName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.looks_3_rounded),

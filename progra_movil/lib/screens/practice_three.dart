@@ -50,7 +50,7 @@ class _PracticeThreeScreenState extends State<PracticeThreeScreen> {
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding:
-                      EdgeInsets.symmetric(horizontal: 40.0, vertical: 120.0),
+                      EdgeInsets.symmetric(horizontal: 40.0, vertical: 50.0),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
