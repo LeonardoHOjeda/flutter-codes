@@ -32,7 +32,7 @@ class _Noticia extends StatelessWidget {
         _TarjetaTitulo(noticia: noticia),
         _TarjetaImagen(noticia: noticia),
         _TarjetaBody(noticia: noticia),
-        _TarjetaBotones(),
+        _TarjetaBotones(noticia: noticia),
         SizedBox(height: 10),
         Divider(),
       ],
@@ -41,6 +41,9 @@ class _Noticia extends StatelessWidget {
 }
 
 class _TarjetaBotones extends StatelessWidget {
+  final Article noticia;
+
+  const _TarjetaBotones({required this.noticia});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class _TarjetaBotones extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           RawMaterialButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pushNamed('/more', arguments: noticia),
             fillColor: miTema.colorScheme.secondary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_five/src/pages/more_page.dart';
 import 'package:practice_five/src/pages/tabs_pages.dart';
 import 'package:practice_five/src/services/news_service.dart';
 import 'package:practice_five/src/theme/tema.dart';
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         theme: miTema,
-        home: TabsPage()
+        initialRoute: '/home' ,
+        routes: {
+          '/home':(_) => TabsPage(),
+          '/more':(_) => MorePage(),
+        },
       ),
     );
   }
