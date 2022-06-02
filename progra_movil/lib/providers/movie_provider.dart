@@ -17,7 +17,8 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
   List<Movie> topRatedMovies = [];
-  List<Trailer> trailers = [];
+  // String trailers = '';
+  String trailers = '';
 
   MoviesProvider() {
     print('Provider inicializado');
@@ -59,17 +60,21 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   getTrailer(int idMovie) async {
+    // this.trailers = '';
     final url = Uri.https(this._baseUrl, '3/movie/$idMovie/videos',
         {'api_key': _apiKey, 'language': _language, 'page': '1'});
 
     final response = await http.get(url);
-    // final trailerResponse = TrailerResponse.fromJson(response.body);
     final trailerResponse = jsonDecode(response.body);
-    print('Respuesta: ${trailerResponse}');
     List youtube = trailerResponse['results'].where((video) => video ['site'] == 'YouTube').toList();
-    return youtube.isEmpty ? null : youtube.first['key'];
-    // this.trailers = trailerResponse.results;
-    // print(trailerResponse);
-    // notifyListeners();
+    this.trailers = youtube.isEmpty ? null : youtube.first['key'];
+    // this.trailers.add(youtube.isEmpty ? '' : youtube.first['key']);
+    // this.trailers.add(youtube.first['key'].toString());
+    print(this.trailers);
+    if(this.trailers.isEmpty){
+      notifyListeners();
+    }
+    return true;
+    // return youtube.isEmpty ? null : youtube.first['key'];
   }
 }

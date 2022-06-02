@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:progra_movil/models/movie.dart';
 import 'package:provider/provider.dart';
@@ -13,47 +15,38 @@ class TrailerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final moviesProvider = Provider.of<MoviesProvider>(context);
-
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    Future<dynamic> _movieId() async{
-      final String mID = await moviesProvider.getTrailer(movie.id);
-      print(mID);
-      return mID;
-    } 
-    print("Movie: ${_movieId()}");
+    moviesProvider.getTrailer(movie.id);
 
+    print(moviesProvider.trailers);
 
-    YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'oImEeiCiYTk',
-    flags: YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-        loop: false
-      ),
-    );
+    TrailerScreen(){
+      moviesProvider.getTrailer(movie.id);
+    }
 
-    // print("Movie: ${movie}");
-
-    return Scaffold(
-      appBar: AppBar(
+      return Scaffold(
+        appBar: AppBar(
         title: Text('Trailer'),
         backgroundColor: Colors.pink,
       ),
       // backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          children: [
-            YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-              progressColors: ProgressBarColors(
-                playedColor: Colors.amber,
-                handleColor: Colors.amberAccent
+      body: (moviesProvider.trailers.isEmpty)
+          ? Center(child: CircularProgressIndicator())
+          : YoutubePlayer(
+            controller: YoutubePlayerController(
+              initialVideoId: moviesProvider.trailers,
+              flags: YoutubePlayerFlags(
+                autoPlay: true,
+                mute: false,
+                loop: false
               ),
-            )
-          ],
-        ),
-      )
+            ),
+            showVideoProgressIndicator: true,
+            progressColors: ProgressBarColors(
+              playedColor: Colors.amber,
+              handleColor: Colors.amberAccent
+            ),
+          ),
     );
   }
 }
