@@ -14,9 +14,14 @@ class PracticeFourScreen extends StatelessWidget {
         backgroundColor: Colors.green[800],
       ),
       drawer: SideMenu(),
-      body: Center(
-        child: Text('Practice Four'),
-      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MovieSlider(),
+            MovieSlider(),
+          ],
+        ),
+      )
     );
   }
 }
