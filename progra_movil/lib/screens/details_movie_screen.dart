@@ -35,7 +35,7 @@ class DetailsMovieScreen extends StatelessWidget {
                   label: Text('Ver trailer'),
                 ),
               ),
-              CastingCards(),
+              CastingCards(movieId: movie.id),
             ])
           )
         ],

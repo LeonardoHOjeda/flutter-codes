@@ -46,7 +46,31 @@ class TrailerScreen extends StatelessWidget {
               playedColor: Colors.amber,
               handleColor: Colors.amberAccent
             ),
-          ),
+          )
+      
+      
+      // FutureBuilder(
+      //   future: moviesProvider.getTrailer(movie.id),
+      //   builder: (_, AsyncSnapshot<bool> snapshot){
+      //     if(!snapshot.hasData){
+      //       return Center(child: CircularProgressIndicator());
+      //     }
+      //     if(!snapshot.data!){
+      //       return Center(child: Text('No trailer'));
+      //     }
+      //     return YoutubePlayer(
+      //       controller: YoutubePlayerController(
+      //         initialVideoId: movie.id.toString(),
+      //         flags: YoutubePlayerFlags(autoPlay: true, mute: false, loop: false),
+      //       ),
+      //       showVideoProgressIndicator: true,
+      //       progressColors: ProgressBarColors(
+      //         playedColor: Colors.green,
+      //         handleColor: Colors.greenAccent
+      //       ),
+      //     );
+      //   },
+      // )
     );
   }
 }
