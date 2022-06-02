@@ -46,6 +46,7 @@ class Movie {
     bool video;
     double voteAverage;
     int voteCount;
+    String? heroId;
 
     factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
