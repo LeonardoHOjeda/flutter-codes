@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:progra_movil/models/movie.dart';
+import 'package:progra_movil/providers/movie_provider.dart';
+import 'package:progra_movil/screens/trailer_screen.dart';
 import 'package:progra_movil/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 
 class DetailsMovieScreen extends StatelessWidget {
 
   static const String routerName = 'DetailsMovie';
 
-
-
   @override
   Widget build(BuildContext context) {
 
-    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    final moviesProvider = Provider.of<MoviesProvider>(context);
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar(),
+          _CustomAppBar(movie: movie,),
           SliverList(
             delegate: SliverChildListDelegate([
-              _PosterAndTitle(),
-              _Description(),
-              CastingCards()
+              _PosterAndTitle(movie: movie,),
+              _Description(movie: movie,),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.pushNamed(context, TrailerScreen.routerName, arguments: movie);
+                    print('Ver trailer');
+                  },
+                  icon: Icon(Icons.ondemand_video),
+                  label: Text('Ver trailer'),
+                ),
+              ),
+              CastingCards(),
             ])
           )
         ],
@@ -32,16 +46,24 @@ class DetailsMovieScreen extends StatelessWidget {
 
 class _Description extends StatelessWidget {
 
+  final Movie movie;
+
+  const _Description({required this.movie});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Text('Lorem Ipsum dolor Asimet', textAlign: TextAlign.justify)
+      child: Text(movie.overview, textAlign: TextAlign.justify)
     );
   }
 }
 
 class _CustomAppBar extends StatelessWidget {
+
+  final Movie movie;
+
+  const _CustomAppBar({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +77,14 @@ class _CustomAppBar extends StatelessWidget {
         centerTitle: true,
         title: Container(
           color: Colors.black12,
-          child: Text('movie.title', style: TextStyle(fontSize: 16),),
-          padding: EdgeInsets.only(bottom: 10),
+          child: Text(movie.title, style: TextStyle(fontSize: 16), textAlign: TextAlign.center,),
+          padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
           width: double.infinity,
           alignment: Alignment.bottomCenter,
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/no-image.jpeg'),
-          image: NetworkImage('http://placekitten.com/400/400'),
+          image: NetworkImage(movie.fullBackdropPath),
           fit: BoxFit.cover,
         ),
       ),
@@ -74,9 +96,16 @@ class _CustomAppBar extends StatelessWidget {
 
 class _PosterAndTitle extends StatelessWidget {
 
+  final Movie movie;
+
+  const _PosterAndTitle({required this.movie});
+
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final size = MediaQuery.of(context).size;
+
+
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -86,7 +115,7 @@ class _PosterAndTitle extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpeg'),
-              image: NetworkImage('http://placekitten.com/200/300'),
+              image: NetworkImage(movie.fullPosterImg),
               height: 150,
             ),
           ),
@@ -94,13 +123,17 @@ class _PosterAndTitle extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('movie.title', style: textTheme.headline5, overflow: TextOverflow.ellipsis, maxLines: 2),
-              Text('movie.release_date', style: textTheme.subtitle1, overflow: TextOverflow.ellipsis, maxLines: 1),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: size.width - 190),
+                child: Text(movie.originalTitle, style: textTheme.headline5, overflow: TextOverflow.ellipsis, maxLines: 2),
+              ),
+              
+              Text(movie.releaseDate.toString(), style: textTheme.subtitle1, overflow: TextOverflow.ellipsis, maxLines: 1),
               Row(
                 children: [
                   Icon(Icons.heart_broken),
                   SizedBox(width: 5),
-                  Text('4.5/10')
+                  Text('${movie.voteAverage}/10 - ${movie.voteCount} votos')
                 ],
               )
             ],

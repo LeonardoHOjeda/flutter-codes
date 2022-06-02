@@ -4,6 +4,7 @@ import 'package:progra_movil/screens/details_movie_screen.dart';
 import 'package:progra_movil/screens/practice_four.dart';
 import 'package:progra_movil/screens/practice_two.dart';
 import 'package:progra_movil/screens/screens.dart';
+import 'package:progra_movil/screens/trailer_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(AppState());
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         PracticeTwoScreen.routerName: (_) =>  PracticeTwoScreen(),
         PracticeThreeScreen.routerName: (_) =>  PracticeThreeScreen(),
         PracticeFourScreen.routerName: (_) =>  PracticeFourScreen(),
-        DetailsMovieScreen.routerName: (_) => DetailsMovieScreen()
+        DetailsMovieScreen.routerName: (_) => DetailsMovieScreen(),
+        TrailerScreen.routerName: (_) => TrailerScreen(),
       },
     );
   }
