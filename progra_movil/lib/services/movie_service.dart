@@ -7,7 +7,7 @@ class MovieService {
   static Future<Database> _openDB() async{
     return openDatabase(join(await getDatabasesPath(), 'movies.db'),
       onCreate: (db, version) {
-        return db.execute("CREATE TABLE movies (id INTEGER PRIMARY KEY, poster_path varchar(40), backdrop_path varchar(40),title varchar(100), vote_average real, release_date varchar(100), overview text)");
+        return db.execute("CREATE TABLE movies (id INTEGER PRIMARY KEY, poster_path varchar(40), backdrop_path varchar(40),title varchar(100), vote_average real, release_date varchar(100), overview text, original_title varchar(100))");
       }, version: 1
     );
   }
@@ -24,6 +24,8 @@ class MovieService {
 
   static Future<List<Movie>> movies() async {
     Database database = await _openDB();
+    final res = await database.query('movies');
+    return res.map<Movie>((map) => Movie.fromMap(map)).toList();
     final List<Map<String, dynamic>> moviesMap = await database.query('movies');
     return moviesMap.map<Movie>((map) => Movie.fromMap(map)).toList();
 

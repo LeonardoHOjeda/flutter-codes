@@ -132,7 +132,9 @@ class _PosterAndTitle extends StatelessWidget {
             children: [
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: size.width - 190),
-                child: Text(movie.originalTitle, style: textTheme.headline5, overflow: TextOverflow.ellipsis, maxLines: 2),
+                child: (movie.originalTitle != null)
+                ? Text(movie.originalTitle!, style: textTheme.headline5, overflow: TextOverflow.ellipsis, maxLines: 2)
+                : Text('No Title', style: textTheme.headline5, overflow: TextOverflow.ellipsis, maxLines: 2)
               ),
               
               Text(movie.releaseDate.toString(), style: textTheme.subtitle1, overflow: TextOverflow.ellipsis, maxLines: 1),
