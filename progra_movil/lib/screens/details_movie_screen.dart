@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 import 'package:progra_movil/models/movie.dart';
 import 'package:progra_movil/providers/movie_provider.dart';
 import 'package:progra_movil/screens/trailer_screen.dart';
+import 'package:progra_movil/widgets/save_button.dart';
 import 'package:progra_movil/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:favorite_button/favorite_button.dart';
+
 
 
 class DetailsMovieScreen extends StatelessWidget {
@@ -138,6 +142,9 @@ class _PosterAndTitle extends StatelessWidget {
                   SizedBox(width: 5),
                   Text('${movie.voteAverage}/10 - ${movie.voteCount} votos')
                 ],
+              ),
+              Container(
+                child: SaveButton(movie: movie)
               )
             ],
           )

@@ -12,14 +12,17 @@ class PracticeFourScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final moviesProvider = Provider.of<MoviesProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Practice 4 - Movies'),
-        backgroundColor: Colors.green[800],
+    return ChangeNotifierProvider(
+      create: (_) => new _NavegacionModel(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Practice 4 - Movies'),
+          backgroundColor: Colors.green[800],
+        ),
+        drawer: SideMenu(),
+        body: _Pages(moviesProvider: moviesProvider),
+        bottomNavigationBar: _Navigation(),
       ),
-      drawer: SideMenu(),
-      body: _Pages(moviesProvider: moviesProvider),
-      bottomNavigationBar: _Navigation(),
     );
   }
 }
@@ -34,7 +37,9 @@ class _Pages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navegacionModel = Provider.of<_NavegacionModel>(context);
     return PageView(
+      controller: navegacionModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: [
           SingleChildScrollView(
@@ -58,12 +63,31 @@ class _Navigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navegacionModel = Provider.of<_NavegacionModel>(context);
     return BottomNavigationBar(
-      currentIndex: 0,
+      currentIndex: navegacionModel.paginaActual ,
+      onTap: (i) {
+        navegacionModel.paginaActual = i;
+      },
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Movies'),
         BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Saved'),
       // BottomNavigationBarItem(icon: Icon(Icons.star)),
     ]);
   }
+}
+
+class _NavegacionModel with ChangeNotifier{
+  int _paginaActual = 0;
+  PageController _pageController = new PageController();
+
+  int get paginaActual => this._paginaActual;
+
+  set paginaActual(int valor){
+    this._paginaActual = valor;
+    _pageController.animateToPage(valor, duration: Duration(milliseconds: 250), curve: Curves.easeOut);
+    notifyListeners();
+  }
+
+  PageController get pageController => this._pageController;
 }
