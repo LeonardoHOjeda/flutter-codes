@@ -43,8 +43,8 @@ class TrailerScreen extends StatelessWidget {
             ),
             showVideoProgressIndicator: true,
             progressColors: ProgressBarColors(
-              playedColor: Colors.amber,
-              handleColor: Colors.amberAccent
+              playedColor: Colors.green,
+              handleColor: Colors.greenAccent
             ),
           )
       
