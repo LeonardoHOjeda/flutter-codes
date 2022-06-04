@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/providers/login_form_provider.dart';
+import 'package:proyecto_final/services/auth_service.dart';
 import 'package:proyecto_final/ui/input_decorations.dart';
 import 'package:proyecto_final/widgets/widgets.dart';
 
@@ -94,13 +95,20 @@ class _LoginForm extends StatelessWidget {
             MaterialButton(
               onPressed: loginForm.isLoading ? null : () async {
                 FocusScope.of(context).unfocus();
+                final authService = Provider.of<AuthService>(context, listen: false);
+
                 if(!loginForm.isValidForm()) return;
+                
                 loginForm.isLoading = true;
 
-                await Future.delayed(Duration(seconds: 2));
+                final String? resp = await authService.createUser(loginForm.email, loginForm.password);
 
-                loginForm.isLoading = false;
-                // Navigator.pushReplacementNamed(context, 'home');
+                if(resp == null){
+                  Navigator.pushReplacementNamed(context, 'home');
+                } else {
+                  print(resp);
+                  loginForm.isLoading = false;
+                }
               },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               disabledColor: Colors.grey,
@@ -110,7 +118,7 @@ class _LoginForm extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: (loginForm.isLoading)
                 ? CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
-                : Text('Iniciar Sesion', style: TextStyle(color: Colors.white),)
+                : Text('Create Account', style: TextStyle(color: Colors.white),)
               ),
             )
           ],
