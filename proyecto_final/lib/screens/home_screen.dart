@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
           ]),
       body: Column(
         children: [
-          Text("Bienvenido ${todo}", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)
+          Text("Bienvenido ${todo}", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
         ],
       ),
     );

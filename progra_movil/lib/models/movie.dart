@@ -41,7 +41,7 @@ class Movie {
     factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         backdropPath: json["backdrop_path"],
         id: json["id"],
-        // originalTitle: json["original_title"],
+        originalTitle: json["original_title"],
         overview: json["overview"],
         posterPath: json["poster_path"],
         releaseDate: DateTime.parse(json["release_date"]),

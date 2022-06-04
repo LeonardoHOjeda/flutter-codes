@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/providers/login_form_provider.dart';
 import 'package:proyecto_final/services/services.dart';
@@ -18,6 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isLoggedIn = false;
   Map _userObj = {};
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,10 +71,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text('Sign in w/FB', style: TextStyle(color: Colors.white),)
                 ),
               ),
-              SizedBox(height: 50),
-              _ButtonLoginService(text: 'Sign in w/FB', color: Color(0xff3b5998),),
               SizedBox(height: 30),
-              _ButtonLoginService(text: 'Sign in w/Google', color: Color(0xfff4b400),),
+              MaterialButton(
+                onPressed: () async {
+                  final GoogleSignInAccount? _googleUser = await GoogleSignIn().signIn();
+                  final GoogleSignInAuthentication? _googleAuth = await _googleUser?.authentication;
+
+                  final credential = GoogleAuthProvider.credential(
+                    accessToken: _googleAuth?.accessToken,
+                    idToken: _googleAuth?.idToken
+                  );
+
+                  try{
+                    await _auth.signInWithCredential(credential);
+                  } on FirebaseAuthException catch (e){
+                    print(e);
+                  }
+                },
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                disabledColor: Colors.grey,
+                elevation: 0,
+                color: Color(0xfff4b400),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  child: Text('Sign in w/Google', style: TextStyle(color: Colors.white),)
+                ),
+              ),
               SizedBox(height: 30),
               TextButton(
                 onPressed: () => Navigator.pushReplacementNamed(context, 'register'), 

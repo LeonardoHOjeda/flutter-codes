@@ -41,6 +41,7 @@ class _CastCard extends StatelessWidget {
   final Cast actor;
 
   const _CastCard({required this.actor});
+  
   @override
   Widget build(BuildContext context) {
     return Container(

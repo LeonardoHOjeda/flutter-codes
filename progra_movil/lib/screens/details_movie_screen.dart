@@ -145,9 +145,9 @@ class _PosterAndTitle extends StatelessWidget {
                   Text('${movie.voteAverage}/10 - ${movie.voteCount} votos')
                 ],
               ),
-              Container(
-                child: SaveButton(movie: movie)
-              )
+              // Container(
+              //   child: SaveButton(movie: movie)
+              // )
             ],
           )
 
