@@ -63,6 +63,7 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
+    print('Resultado FirebaseUser $firebaseUser');
 
     if(firebaseUser != null){
       return const HomeScreen();

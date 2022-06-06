@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomButton(onTap: (){Navigator.pushNamed(context, EmailPasswordLogin.routeName);}, text: 'Iniciar Sesion con Correo', color: Colors.blue,),
             CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithGoogle(context);}, text: 'Google', color: Color(0xfff4b400),),
             CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithFacebook(context);}, text: 'Facebook', color: Color(0xff3b5998),),
+            CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithGithub(context);}, text: 'Github', color: Color(0xff171515),),
           ],
         ),
       ),

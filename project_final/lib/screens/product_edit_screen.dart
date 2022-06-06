@@ -151,6 +151,17 @@ class _ProductForm extends StatelessWidget {
                 },
                 decoration: InputDecorations.authInputDecoration(hintText: '\$50', labelText: 'Precio')
               ),
+              TextFormField(
+                initialValue: product.description,
+                onChanged: (value) => product.description = value,
+                validator: (value) {
+                  if(value == null || value.length < 1)
+                    return 'Ingresa un valor correcto';
+                },
+                maxLines: 10,
+                minLines: 1,
+                decoration: InputDecorations.authInputDecoration(hintText: 'Descripcion', labelText: 'Descripcion')
+              ),
               SizedBox(height:30),
               SwitchListTile(
                 title: Text('Esta disponible'),
