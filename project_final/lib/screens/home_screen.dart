@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_final/models/product.dart';
 import 'package:project_final/screens/product_edit_screen.dart';
 import 'package:project_final/screens/screens.dart';
 import 'package:project_final/services/services.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         ),
         body: RefreshIndicator(
           onRefresh: () async =>  {
-            Provider.of<ProductsService>(context, listen: false)
+            await ProductsService()
           },
           child: ListView.builder(
             itemCount: productsService.products.length,
@@ -39,7 +40,10 @@ class HomeScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: (){},
+          onPressed: (){
+            productsService.selectedProduct = new ProductsResponse(available: true, secondHand: false, name: '', price: 0);
+            Navigator.pushNamed(context, ProductScreen.routeName);
+          },
         )
       );
   }

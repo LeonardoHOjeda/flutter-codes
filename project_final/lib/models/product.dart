@@ -9,6 +9,7 @@ class ProductsResponse {
         required this.available,
         required this.name,
         required this.price,
+        required this.secondHand,
         this.rate,
         this.picture,
         this.id
@@ -19,6 +20,7 @@ class ProductsResponse {
     double price;
     int? rate;
     String? picture;
+    bool secondHand;
     String? id;
 
     factory ProductsResponse.fromJson(String str) => ProductsResponse.fromMap(json.decode(str));
@@ -30,7 +32,8 @@ class ProductsResponse {
         name: json["name"],
         price: json["price"].toDouble(),
         rate: json["rate"],
-        picture: json["picture"] == null ? null : json["picture"],
+        picture: json["picture"] == null ? null : json["picture"], 
+        secondHand: json["secondHand"],
     );
 
     Map<String, dynamic> toMap() => {
@@ -39,6 +42,7 @@ class ProductsResponse {
         "price": price,
         "rate": rate,
         "picture": picture == null ? null : picture,
+        "secondHand": secondHand
     };
 
     ProductsResponse copy() => ProductsResponse(
@@ -47,6 +51,7 @@ class ProductsResponse {
       name: name, 
       picture: picture,
       price: price,
-      rate: rate
+      rate: rate, 
+      secondHand: secondHand
     );
 }

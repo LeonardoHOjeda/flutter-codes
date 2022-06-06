@@ -63,13 +63,30 @@ class _productDetails extends StatelessWidget {
               // softWrap: false,
             ),
             Text('\$${product.price}', style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic, fontSize: 18),),
-            (product.available == true)
-            ? _IsAvailableText(backgroundColor: Colors.green, text: 'Disponible', textColor: Colors.white, width: 80)
-            : _IsAvailableText(backgroundColor: Colors.red, text: 'No Disponible', textColor: Colors.white, width: 100),
             Row(
               children: [
+                (product.available == true)
+                ? _IsAvailableText(backgroundColor: Colors.green, text: 'Disponible', textColor: Colors.white, width: 80)
+                : _IsAvailableText(backgroundColor: Colors.red, text: 'No Disponible', textColor: Colors.white, width: 100),
+                SizedBox(width: 10),
+                (product.secondHand == true)
+                ? _IsAvailableText(backgroundColor: Colors.brown, text: 'Usado', textColor: Colors.white, width: 80)
+                : _IsAvailableText(backgroundColor: Colors.blue, text: 'Nuevo', textColor: Colors.white, width: 80),
+              ],
+            ),
+            
+            (product.rate != null)
+            ? Row(
+              children: [
+                
                 Text('${product.rate}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.amber),),
                 Icon(Icons.star, size: 15, color: Colors.amber,),
+              ]
+            )
+            : Row(
+              children: [
+                Text('Sin calificacion', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),),
+                Icon(Icons.star, size: 15, color: Colors.grey,),
               ]
             ),
           ],
