@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: (){
             productsService.selectedProduct = new ProductsResponse(available: true, secondHand: false, name: '', price: 0);
-            Navigator.pushNamed(context, ProductScreen.routeName);
+            Navigator.pushNamed(context, ProductEditScreen.routeName);
           },
         )
       );

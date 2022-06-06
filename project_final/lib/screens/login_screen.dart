@@ -21,11 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomButton(onTap: (){Navigator.pushNamed(context, EmailPasswordSignup.routeName);}, text: 'Crear Cuenta'),
-            CustomButton(onTap: (){Navigator.pushNamed(context, EmailPasswordLogin.routeName);}, text: 'Iniciar Sesion con Correo'),
-            CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithGoogle(context);}, text: 'Google'),
-            CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithFacebook(context);}, text: 'Facebook'),
+            Text('Iniciar Sesion con alguna de estas maneras', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+            CustomButton(onTap: (){Navigator.pushNamed(context, EmailPasswordSignup.routeName);}, text: 'Crear Cuenta', color: Colors.blue,),
+            CustomButton(onTap: (){Navigator.pushNamed(context, EmailPasswordLogin.routeName);}, text: 'Iniciar Sesion con Correo', color: Colors.blue,),
+            CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithGoogle(context);}, text: 'Google', color: Color(0xfff4b400),),
+            CustomButton(onTap: (){context.read<FirebaseAuthMethods>().signInWithFacebook(context);}, text: 'Facebook', color: Color(0xff3b5998),),
           ],
         ),
       ),

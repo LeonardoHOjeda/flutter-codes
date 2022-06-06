@@ -78,7 +78,6 @@ class _productDetails extends StatelessWidget {
             (product.rate != null)
             ? Row(
               children: [
-                
                 Text('${product.rate}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.amber),),
                 Icon(Icons.star, size: 15, color: Colors.amber,),
               ]

@@ -12,6 +12,7 @@ class ProductsResponse {
         required this.secondHand,
         this.rate,
         this.picture,
+        this.description,
         this.id
     });
 
@@ -21,6 +22,7 @@ class ProductsResponse {
     int? rate;
     String? picture;
     bool secondHand;
+    String? description;
     String? id;
 
     factory ProductsResponse.fromJson(String str) => ProductsResponse.fromMap(json.decode(str));
@@ -34,6 +36,7 @@ class ProductsResponse {
         rate: json["rate"],
         picture: json["picture"] == null ? null : json["picture"], 
         secondHand: json["secondHand"],
+        description: json["description"],
     );
 
     Map<String, dynamic> toMap() => {
@@ -42,7 +45,8 @@ class ProductsResponse {
         "price": price,
         "rate": rate,
         "picture": picture == null ? null : picture,
-        "secondHand": secondHand
+        "secondHand": secondHand,
+        "description": description
     };
 
     ProductsResponse copy() => ProductsResponse(
@@ -52,6 +56,7 @@ class ProductsResponse {
       picture: picture,
       price: price,
       rate: rate, 
-      secondHand: secondHand
+      secondHand: secondHand,
+      description: description
     );
 }

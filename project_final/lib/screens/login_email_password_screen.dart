@@ -49,7 +49,7 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
               ),
             ),
             const SizedBox(height: 40),
-            CustomButton(onTap: loginUser, text: 'Login')
+            CustomButton(onTap: loginUser, text: 'Login', color: Colors.blue,)
           ],
         ),
       ),

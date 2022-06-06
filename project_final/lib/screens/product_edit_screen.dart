@@ -8,7 +8,7 @@ import 'package:project_final/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 
-class ProductScreen extends StatelessWidget {
+class ProductEditScreen extends StatelessWidget {
 
   static String routeName = '/product-card';
 

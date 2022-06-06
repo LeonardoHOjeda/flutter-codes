@@ -51,7 +51,7 @@ class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
             ),
           ),
           const SizedBox(height: 20),
-          CustomButton(onTap: signUpUser, text: 'Crear Cuenta')
+          CustomButton(onTap: signUpUser, text: 'Crear Cuenta', color: Colors.green,)
         ],
       ),
     );

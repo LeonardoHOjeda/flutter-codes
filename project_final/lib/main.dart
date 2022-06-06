@@ -2,10 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project_final/firebase_options.dart';
-import 'package:project_final/screens/home_screen.dart';
 import 'package:project_final/screens/login_email_password_screen.dart';
-import 'package:project_final/screens/login_screen.dart';
-import 'package:project_final/screens/product_edit_screen.dart';
+import 'package:project_final/screens/screens.dart';
 import 'package:project_final/screens/signup_email_password_screen.dart';
 import 'package:project_final/services/services.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +39,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(
               color: Colors.green[900]
             ),
+            fontFamily: 'Raleway',
             floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Colors.green,
               elevation: 0
@@ -50,7 +49,8 @@ class MyApp extends StatelessWidget {
           routes: {
             EmailPasswordLogin.routeName: (context) => const EmailPasswordLogin(),
             EmailPasswordSignup.routeName: (context) => const EmailPasswordSignup(),
-            ProductScreen.routeName: (context) => ProductScreen()
+            ProductEditScreen.routeName: (context) => ProductEditScreen(),
+            ProductScreen.routeName:(context) => ProductScreen()
           },
         ),
     );
